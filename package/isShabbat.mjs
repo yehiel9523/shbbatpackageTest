@@ -6,6 +6,7 @@ export function isShabbat(date = new Date(), location = JERUSALEM_LOCATION) {
     const hebrewDate = () => {
         const hebcalDate = new Hebcal.HDate(new Date(date))
         hebcalDate.setLocation(location)
+        console.log(hebcalDate.candleLighting())
 
         return hebcalDate
     };
