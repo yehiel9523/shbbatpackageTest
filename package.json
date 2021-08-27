@@ -1,6 +1,6 @@
 {
-    "name": "shabbatpackage",
-    "version": "3.1.7",
+    "name": "shabbatpackagetest",
+    "version": "1.0.1",
     "description": "",
     "main": "index.mjs",
     "scripts": {
