@@ -12,7 +12,7 @@ const JERUSALEM_LOCATION = [31.771959, 35.217018];
 export function shabbatBlockerMiddleware(date = new Date(), defLocation = JERUSALEM_LOCATION) {
     return (req, res, next) => {
         let location = getUserLocation(req) || defLocation;
-
+        console.log(location)
         if (isShabbat(date, location)) {
             res.set('Content-Type', 'text/html');
             res.sendFile(join(__dirname, '../static/shabbatPage.html'))
