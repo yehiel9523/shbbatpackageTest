@@ -1,9 +1,10 @@
 import geoip from 'geoip-lite';
-import {fileURLToPath} from 'url';
-import {dirname, join} from 'path';
-import {isShabbat} from "./isShabbat.mjs";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { isShabbat } from "./isShabbat.mjs";
 
-const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(
+    import.meta.url);
 const __dirname = dirname(__filename);
 
 const JERUSALEM_LOCATION = [31.771959, 35.217018];
@@ -30,10 +31,10 @@ function getIpInfo(ip) {
     }
     var lookedUpIP = geoip.lookup(ip);
     if ((ip === '127.0.0.1' || ip === '::1')) {
-        return {error: "This won't work on localhost"}
+        return { error: "This won't work on localhost" }
     }
     if (!lookedUpIP) {
-        return {error: "Error occured while trying to process the information"}
+        return { error: "Error occured while trying to process the information" }
     }
     return lookedUpIP;
 }
@@ -41,9 +42,10 @@ function getIpInfo(ip) {
 function getUserLocation(req) {
     let xForwardedFor = (req.headers['x-forwarded-for'] || '').replace(/:\d+$/, '');
     let ip = xForwardedFor || req.connection.remoteAddress;
-    let location = {ip, ...getIpInfo(ip)};
+    let location = { ip, ...getIpInfo(ip) };
 
     if (location) {
+        console.log(location.ll)
         return location.ll
     } else {
         return null
